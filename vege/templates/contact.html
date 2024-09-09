@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+{% block title %}Contact | {% endblock %}
+{% block content %}
+<h1 class="contact-title">Contact Us</h1>
+<div class="container">
+    <div class="contact-form-wrapper shadow-lg">
+        <form class="contact-form">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" class="form-control" id="name" placeholder="Enter your name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email address</label>
+                <input type="email" class="form-control" id="email" placeholder="Enter your email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea class="form-control" id="message" rows="5" placeholder="Enter your message" required></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary submit-btn">Send Message</button>
+        </form>
+    </div>
+</div>
+
+<style>
+    .contact-title {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #333;
+        text-align: center;
+        margin: 2rem 0;
+    }
+
+    .contact-form-wrapper {
+        max-width: 600px;
+        margin: 50px auto;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        padding: 2rem;
+    }
+
+    .contact-form {
+        display: flex;
+        flex-direction: column;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-group label {
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+        color: #495057;
+    }
+
+    .form-control {
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+        padding: 0.75rem;
+        font-size: 1rem;
+        transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    }
+
+    .form-control:focus {
+        border-color: #80bdff;
+        outline: 0;
+        box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    }
+
+    .submit-btn {
+        background-color: #007bff;
+        border: none;
+        color: white;
+        padding: 0.75rem 1.5rem;
+        font-size: 1rem;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background-color 0.15s ease-in-out;
+    }
+
+    .submit-btn:hover {
+        background-color: #0056b3;
+    }
+</style>
+{% endblock %}

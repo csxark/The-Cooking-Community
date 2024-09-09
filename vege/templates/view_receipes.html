@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+{% block title %}View Recipes | {% endblock %}
+{% block content %}
+<div class="container mt-4">
+    <h2 class="mb-4">All Recipes</h2>
+    <table class="table table-hover table-bordered shadow-lg">
+        <thead class="thead-dark">
+            <tr> 
+                <th scope="col">#</th>
+                <th scope="col">Recipe Name</th>
+                <th scope="col">Description</th>
+                <th scope="col">Instructions</th>
+                <th scope="col">Image</th>
+            </tr>
+        </thead>
+        <tbody class="table-group-divider">
+            {% for recipe in recipes %}
+            <tr class="table">
+                <th scope="row">{{ forloop.counter }}</th>
+                <td>{{ recipe.receipe_name }}</td> 
+                <td>{{ recipe.receipe_description|truncatewords:20 }}</td>
+                <td>{{ recipe.receipe_instructions|truncatewords:20 }}</td>
+                <td><img src="{{ recipe.receipe_image.url }}" alt="{{ recipe.receipe_name }}" class="img-fluid" style="max-width: 100px;"></td>
+            </tr>
+            {% empty %}
+            <tr>
+                <td colspan="4" class="text-center">No recipes available.</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

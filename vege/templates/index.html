@@ -1,0 +1,145 @@
+{% extends 'base.html' %}
+{% block title %}Home | {% endblock %}
+{% block content %}
+<style>
+    .hero-section {
+        background: linear-gradient(135deg, #202427 0%, #2c3e50 100%);
+        padding: 5rem 0;
+        color: #e0e0e0;
+    }
+    .hero-title {
+        font-size: 3.5rem;
+        font-weight: bold;
+        color: #ffc107;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        margin-bottom: 1.5rem;
+    }
+    .hero-subtitle {
+        font-size: 1.5rem;
+        margin-bottom: 2rem;
+    }
+    .hero-btn {
+        font-size: 1.2rem;
+        padding: 0.75rem 1.5rem;
+        margin: 0 0.5rem;
+        transition: all 0.3s;
+    }
+    .hero-btn:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 6px 12px rgba(0,0,0,0.2);
+    }
+    .featured-section {
+        background-color: #f8f9fa;
+        padding: 4rem 0;
+    }
+    .featured-title {
+        color: #202427;
+        font-weight: bold;
+        margin-bottom: 2rem;
+    }
+    .featured-card {
+        transition: all 0.3s;
+    }
+    .featured-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+    .tips-list {
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .tips-list .list-group-item {
+        border: none;
+        padding: 1rem 1.5rem;
+        background-color: transparent;
+        color: #202427;
+        transition: all 0.3s;
+    }
+    .tips-list .list-group-item:hover {
+        background-color: #f8f9fa;
+        transform: translateX(5px);
+    }
+</style>
+
+<div class="hero-section">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-10 text-center">
+                <h1 class="hero-title">Welcome to the Cooking Community</h1>
+                <p class="hero-subtitle">Explore delicious recipes, share your own creations, and connect with other food enthusiasts.</p>
+                <div>
+                    <a href="{% url 'recipes' %}" class="btn btn-warning hero-btn">Add Recipe</a>
+                    <a href="{% url 'view_receipes' %}" class="btn btn-outline-light hero-btn">View Recipes</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="featured-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <h2 class="featured-title">Featured Recipes</h2>
+                <div class="card featured-card mb-4">
+                    <img src="https://via.placeholder.com/350x200" class="card-img-top" alt="Featured Recipe">
+                    <div class="card-body">
+                        <h5 class="card-title">Delicious Pasta Dish</h5>
+                        <p class="card-text">A mouthwatering pasta recipe that's quick and easy to make.</p>
+                        <a href="#" class="btn btn-warning">View Recipe</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <h2 class="featured-title">Cooking Tips</h2>
+                <ul class="list-group tips-list">
+                    <li class="list-group-item">Always preheat your oven for consistent results</li>
+                    <li class="list-group-item">Use fresh ingredients for the best flavor</li>
+                    <li class="list-group-item">Invest in a good set of kitchen knives</li>
+                    <li class="list-group-item">Don't be afraid to experiment with spices</li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const heroButtons = document.querySelectorAll('.hero-btn');
+        heroButtons.forEach(button => {
+            button.addEventListener('mouseover', function() {
+                this.style.transform = 'translateY(-3px)';
+                this.style.boxShadow = '0 6px 12px rgba(0,0,0,0.2)';
+            });
+            button.addEventListener('mouseout', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = 'none';
+            });
+        });
+
+        const featuredCard = document.querySelector('.featured-card');
+        featuredCard.addEventListener('mouseover', function() {
+            this.style.transform = 'translateY(-5px)';
+            this.style.boxShadow = '0 10px 20px rgba(0,0,0,0.1)';
+        });
+        featuredCard.addEventListener('mouseout', function() {
+            this.style.transform = 'translateY(0)';
+            this.style.boxShadow = 'none';
+        });
+
+        const tipItems = document.querySelectorAll('.tips-list .list-group-item');
+        tipItems.forEach(item => {
+            item.addEventListener('mouseover', function() {
+                this.style.backgroundColor = '#f8f9fa';
+                this.style.transform = 'translateX(5px)';
+            });
+            item.addEventListener('mouseout', function() {
+                this.style.backgroundColor = 'transparent';
+                this.style.transform = 'translateX(0)';
+            });
+        });
+    });
+</script>
+
+{% endblock %} 

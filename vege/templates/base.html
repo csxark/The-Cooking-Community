@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>{% block title %}{% endblock %}The Cooking Community</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    </head>
+<body>
+    <style>
+        .navbar {
+            background-color: #202427 !important;
+            padding: 1rem 0;
+        }
+        .navbar-brand {
+            color: #ffc107 !important;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+        .nav-link {
+            color: #e0e0e0 !important;
+            font-size: 18px;
+            font-family: 'Arial', sans-serif;
+            font-weight: 500;
+            margin-left: 10px;
+            margin-right: 10px;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        .nav-link:hover {
+            color: #ffc107 !important;
+        }
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(255, 255, 255, 0.55)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+        .navbar-toggler {
+            border-color: rgba(255, 255, 255, 0.1);
+        }
+        footer a:hover {
+            color: #ffc107 !important;
+        }
+    </style>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="padding-left: 10px; padding-right: 10px;">
+        <div class="container">
+            <a class="navbar-brand" href="{% url 'home' %}" style="font-size: 20px; font-weight: bold; color: white; margin-left: 10px; margin-right: 10px; text-decoration: none; font-family: 'Arial', sans-serif; font-style: italic; font-variant: small-caps; font-weight: bold; text-shadow: 2px 2px 4px #000000;">The Cooking Community</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon" style="color: white;"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav" style="margin-left: 10px;">
+                <ul class="navbar-nav ms-auto" style="margin-left: 10px;">
+                    <li class="nav-item" style="margin-left: 10px; margin-right: 10px;">
+                        <a class="nav-link" href="{% url 'home' %}">Home</a>
+                    </li>
+                    <li class="nav-item" style="margin-left: 10px; margin-right: 10px;">
+                        <a class="nav-link" href="{% url 'recipes' %}">Add Recipes</a>
+                    </li>
+                    <li class="nav-item" style="margin-left: 10px; margin-right: 10px;">
+                        <a class="nav-link" href="{% url 'view_receipes' %}">View Recipes</a>
+                    </li> 
+                    <li class="nav-item" style="margin-left: 10px; margin-right: 10px;">
+                        <a class="nav-link" href="{% url 'about' %}">About</a>
+                    </li>
+                    `<li class="nav-item" style="margin-left: 10px; margin-right: 10px;">
+                        <a class="nav-link" href="{% url 'contact' %}">Contact</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    {% block content %}
+    {% endblock %} 
+
+    <footer class="bg-dark text-white py-4 mt-auto" style="font-family: Arial, sans-serif;">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <h5 style="color: #ffc107; font-weight: bold;">The Cooking Community</h5>
+                    <p class="small" style="color: #e0e0e0;">Inspiring home cooks since 2024</p>
+                </div>
+                <div class="col-md-4">
+                    <h5 style="color: #ffc107; font-weight: bold;">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li><a href="{% url 'home' %}" class="text-white" style="text-decoration: none; transition: color 0.3s;">Home</a></li>
+                        <li><a href="{% url 'recipes' %}" class="text-white" style="text-decoration: none; transition: color 0.3s;">Recipes</a></li>
+                        <li><a href="{% url 'about' %}" class="text-white" style="text-decoration: none; transition: color 0.3s;">About</a></li>
+                        <li><a href="{% url 'contact' %}" class="text-white" style="text-decoration: none; transition: color 0.3s;">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5 style="color: #ffc107; font-weight: bold;">Connect With Us</h5>
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><a href="#" class="text-white" style="font-size: 1.5rem; margin-right: 10px; transition: color 0.3s;"><i class="fab fa-facebook-f"></i></a></li>
+                        <li class="list-inline-item"><a href="#" class="text-white" style="font-size: 1.5rem; margin-right: 10px; transition: color 0.3s;"><i class="fab fa-twitter"></i></a></li>
+                        <li class="list-inline-item"><a href="#" class="text-white" style="font-size: 1.5rem; margin-right: 10px; transition: color 0.3s;"><i class="fab fa-instagram"></i></a></li>
+                        <li class="list-inline-item"><a href="#" class="text-white" style="font-size: 1.5rem; transition: color 0.3s;"><i class="fab fa-pinterest"></i></a></li>
+                    </ul>
+                </div>
+            </div>
+            <hr class="my-4" style="border-color: #ffc107; opacity: 0.5;">
+            <div class="row">
+                <div class="col-md-6 small">
+                    <p style="color: #e0e0e0;">&copy; 2024 The Cooking Community. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-md-end small">
+                    <a href="#" class="text-white me-2" style="text-decoration: none; transition: color 0.3s;">Privacy Policy</a>
+                    <a href="#" class="text-white" style="text-decoration: none; transition: color 0.3s;">Terms of Service</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var body = document.body;
+            var html = document.documentElement;
+            var footer = document.querySelector('footer');
+
+            function adjustFooter() {
+                var height = Math.max(body.scrollHeight, body.offsetHeight, 
+                    html.clientHeight, html.scrollHeight, html.offsetHeight);
+                if (height > window.innerHeight) {
+                    footer.style.position = 'relative';
+                } else {
+                    footer.style.position = 'fixed';
+                    footer.style.bottom = '0';
+                    footer.style.width = '100%';
+                }
+            }
+
+            window.addEventListener('resize', adjustFooter);
+            adjustFooter();
+        });
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

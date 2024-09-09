@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% block title %}About | {% endblock %}
+{% block content %}
+
+<style> 
+    .about-section {
+        background-color: #f8f9fa;
+        padding: 40px 0;
+        margin-top: 0px;
+    }
+    .section-header {
+        text-align: center;
+        margin-bottom: 30px;
+        color: #28a745;
+    }
+    .section-header h2 {
+        font-size: 32px;
+        font-weight: bold;
+    }
+    .content-box {
+        background-color: #fff;
+        border-radius: 10px;
+        padding: 30px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+        border: 1px solid #28a745;
+    }
+    .content-box:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+    .content-box h3 {
+        color: #28a745;
+        font-size: 24px;
+        margin-bottom: 15px;
+    }
+    .content-box p {
+        color: #212529;
+        font-size: 16px;
+        line-height: 1.6;
+    }
+</style>
+
+<section class="about-section">
+    <div class="container">
+        <div class="section-header"> 
+            <h2 class="text-success">About The Cooking Community</h2>
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <div class="content-box">
+                    <h3>Who We Are</h3>
+                    <p>The Cooking Community is a vibrant platform dedicated to bringing food enthusiasts together. We believe in the power of cooking to connect people, cultures, and ideas. Our community is built on the passion for creating delicious meals and sharing culinary experiences.</p>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="content-box">
+                    <h3>Our Mission</h3>
+                    <p>Our mission at The Cooking Community is to inspire and empower home cooks of all skill levels. We strive to create a platform where culinary enthusiasts can share their passion, learn new techniques, and discover diverse recipes from around the world. Through our community-driven approach, we aim to make cooking accessible, enjoyable, and a source of connection for everyone.</p>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="content-box">
+                    <h3>Community Support</h3>
+                    <p>At The Cooking Community, we believe in the power of shared knowledge and mutual support. Our vibrant community of food lovers is always ready to offer advice, share tips, and provide encouragement. Whether you're a beginner looking for guidance or an experienced chef wanting to share your expertise, you'll find a welcoming and supportive environment here. Together, we're building a global kitchen where everyone has a seat at the table.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const contentBoxes = document.querySelectorAll('.content-box');
+        
+        contentBoxes.forEach(box => {
+            box.addEventListener('mouseenter', function() {
+                this.style.backgroundColor = '#e9ecef';
+            });
+            
+            box.addEventListener('mouseleave', function() {
+                this.style.backgroundColor = '#fff';
+            });
+        });
+    });
+</script>
+
+{% endblock %}

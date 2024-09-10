@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% block title %}View Recipes | {% endblock %}
-{% block content %}
+{% block content %} 
 <div class="container mt-4">
     <h2 class="mb-4">All Recipes</h2>
     <table class="table table-hover table-bordered shadow-lg">
@@ -10,21 +10,29 @@
                 <th scope="col">Recipe Name</th>
                 <th scope="col">Description</th>
                 <th scope="col">Instructions</th>
-                <th scope="col">Image</th>
+                <th scope="col">Image</th> 
             </tr>
         </thead>
         <tbody class="table-group-divider">
             {% for recipe in recipes %}
             <tr class="table">
-                <th scope="row">{{ forloop.counter }}</th>
+                <th scope="row">{{ forloop.counter }}</th> 
                 <td>{{ recipe.receipe_name }}</td> 
                 <td>{{ recipe.receipe_description|truncatewords:20 }}</td>
                 <td>{{ recipe.receipe_instructions|truncatewords:20 }}</td>
                 <td><img src="{{ recipe.receipe_image.url }}" alt="{{ recipe.receipe_name }}" class="img-fluid" style="max-width: 100px;"></td>
+                <td>
+                    <a href="{% url 'edit_receipe' recipe.id %}" class="btn btn-primary">Edit</a> 
+                    <form action="{% url 'delete_recipe' recipe.id %}" method="POST" style="display: inline;">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this recipe?')">Delete</button>
+                        <a href="{% url 'view_blog' recipe.id %}" class="btn btn-primary">View Recipe</a> 
+                    </form>
+                </td> 
             </tr>
             {% empty %}
             <tr>
-                <td colspan="4" class="text-center">No recipes available.</td>
+                <td colspan="9" class="text-center">No recipes available.</td>
             </tr>
             {% endfor %}
         </tbody>

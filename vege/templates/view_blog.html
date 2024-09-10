@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+
+{% block title %}
+View Blog | 
+{% endblock %}
+
+{% block content %}
+<style>
+    .blog-container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f8f9fa;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    }
+    .blog-title {
+        color: #28a745;
+        font-size: 2.5rem;
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    .blog-image {
+        width: 100%;
+        height: auto;
+        border-radius: 10px;
+        margin-bottom: 20px;
+        transition: transform 0.3s ease-in-out;
+    }
+    .blog-image:hover {
+        transform: scale(1.02);
+    }
+    .blog-section {
+        margin-bottom: 30px;
+    }
+    .blog-section h3 {
+        color: #28a745;
+        font-size: 1.5rem;
+        margin-bottom: 10px;
+    }
+    .blog-section p {
+        font-size: 1.1rem;
+        line-height: 1.6;
+        color: #333;
+    }
+    .blog-post-image {
+        max-width: 100%;
+        height: auto;
+        margin: 2rem 0;
+        padding: 1rem;
+        background-color: #f8f9fa;
+        border-radius: 8px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .blog-post-image img {
+        width: 100%;
+        height: auto;
+        object-fit: cover;
+        border-radius: 4px;
+    }
+
+    .blog-post {
+        margin-top: -2rem;
+        margin-bottom: 1rem;
+        padding: 2rem;
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    .blog-post-header {
+        margin-bottom: 2rem;
+    }
+
+    .blog-post-content {
+        margin-top: 2rem;
+    }
+
+    .blog-post-footer {
+        margin-top: 3rem;
+        padding-top: 1.5rem;
+        border-top: 1px solid #e9ecef;
+    }
+</style>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <article class="blog-post shadow-lg"> 
+                <header class="blog-post-header mb-4">
+                    <h1 class="blog-title display-4">{{ recipe.receipe_name }}</h1>
+                    <p class="text-muted">Posted on {{ recipe.created_at|date:"F d, Y" }}</p>
+                </header>
+
+                <figure class="blog-post-image mb-4">
+                    <img src="{{ recipe.receipe_image.url }}" alt="{{ recipe.receipe_name }}" class="img-fluid rounded">
+                </figure>
+
+                <section class="blog-post-content">
+                    <h2 class="h4 text-success mb-3">Description</h2>
+                    <p class="lead mb-4">{{ recipe.receipe_description }}</p>
+
+                    <h2 class="h4 text-success mb-3">Instructions</h2>
+                    <div class="card">
+                        <div class="card-body">
+                            {{ recipe.receipe_instructions|linebreaks }}
+                        </div>
+                    </div>
+                </section>
+
+                <footer class="blog-post-footer mt-4">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <a href="{% url 'view_receipes' %}" class="btn btn-outline-secondary">&larr; Back to Recipes</a>
+                        <button class="btn btn-success" onclick="window.print()">Print Recipe</button> 
+                    </div>
+                </footer>
+            </article>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const blogSections = document.querySelectorAll('.blog-section');
+        
+        blogSections.forEach(section => {
+            section.style.opacity = '0';
+            section.style.transform = 'translateY(20px)';
+            section.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+        });
+
+        setTimeout(() => {
+            blogSections.forEach((section, index) => {
+                setTimeout(() => {
+                    section.style.opacity = '1';
+                    section.style.transform = 'translateY(0)';
+                }, index * 200);
+            });
+        }, 300);
+    });
+</script>
+
+{% endblock %}

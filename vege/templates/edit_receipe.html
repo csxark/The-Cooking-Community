@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Edit Receipe | 
+{% endblock %}
+
+{% block content %} 
+<div class="recipe-form-container bg-dark text-white p-4 pb-5 "> 
+    <h2 class="mb-2 text-center section-title">Edit Receipe</h2> 
+    <hr class="section-divider mb-4" style="border-color: #ff9500; border-width: 2px; width: 100px; margin-left: auto; margin-right: auto;">
+    <form action="{% url 'edit_receipe' recipe.id %}" class="recipe-form mx-auto p-4 pb-4" style="max-width: 600px; border-radius: 10px; box-shadow: 0 0 10px 0 rgba(255, 149, 0, 0.75); transition: background-color 0.3s ease;color: #ffffff; " enctype="multipart/form-data">
+        {% csrf_token %} 
+        <div class="mb-3" >
+            <label for="recipe-name" class="form-label fw-bold" style="font-size: 18px;" >Receipe Name</label>
+            <input type="text" class="form-control" id="recipe-name" name="receipe_name" value="{{ recipe.receipe_name }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="description" class="form-label">Description</label>
+            <textarea class="form-control" id="description" name="receipe_description" rows="3" required>
+                {{ recipe.receipe_description }}
+            </textarea>
+        </div>
+        <div class="mb-3">
+            <label for="instructions" class="form-label">Instructions</label>
+            <textarea class="form-control" id="instructions" name="receipe_instructions" rows="5" required>
+                {{ recipe.receipe_instructions }}
+            </textarea>
+        </div>
+        <div class="mb-3">
+            <label for="image" class="form-label">Image</label>
+            <input type="file" class="form-control" id="image" name="receipe_image" value="{{ recipe.receipe_image }}">
+        </div>
+        <button type="submit" class="btn btn-submit btn-lg btn-block text-white mb-4" style="background-color: #ff9500; border-color: #ff9500; font-weight: bold; font-size: 18px; padding: 10px 20px; border-radius: 10px; box-shadow: 0 0 10px 0 rgba(255, 149, 0, 0.75); transition: background-color 0.3s ease;">Edit Recipe</button>
+    </form>
+</div>
+{% endblock %} 

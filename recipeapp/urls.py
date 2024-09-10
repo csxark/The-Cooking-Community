@@ -29,6 +29,10 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     path('contact/', views.contact, name='contact'),
     path('view_receipes/', views.view_receipes, name='view_receipes'),
+    path('edit_receipe/<int:recipe_id>/', views.edit_receipe, name='edit_receipe'),
+    path('delete_recipe/<int:recipe_id>/', views.delete_recipe, name='delete_recipe'),
+    path('view_blog/<int:recipe_id>/', views.view_blog, name='view_blog'),
+    path('search/', views.search, name='search'),
 ]
 
 if settings.DEBUG:

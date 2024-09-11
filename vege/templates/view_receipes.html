@@ -2,41 +2,104 @@
 {% block title %}View Recipes | {% endblock %}
 {% block content %} 
 <div class="container mt-4">
-    <h2 class="mb-4">All Recipes</h2>
-    <table class="table table-hover table-bordered shadow-lg">
-        <thead class="thead-dark">
-            <tr> 
-                <th scope="col">#</th>
-                <th scope="col">Recipe Name</th>
-                <th scope="col">Description</th>
-                <th scope="col">Instructions</th>
-                <th scope="col">Image</th> 
-            </tr>
-        </thead>
-        <tbody class="table-group-divider">
-            {% for recipe in recipes %}
-            <tr class="table">
-                <th scope="row">{{ forloop.counter }}</th> 
-                <td>{{ recipe.receipe_name }}</td> 
-                <td>{{ recipe.receipe_description|truncatewords:20 }}</td>
-                <td>{{ recipe.receipe_instructions|truncatewords:20 }}</td>
-                <td><img src="{{ recipe.receipe_image.url }}" alt="{{ recipe.receipe_name }}" class="img-fluid" style="max-width: 100px;"></td>
-                <td>
-                    <a href="{% url 'edit_receipe' recipe.id %}" class="btn btn-primary">Edit</a> 
-                    <form action="{% url 'delete_recipe' recipe.id %}" method="POST" style="display: inline;">
-                        {% csrf_token %}
-                        <button type="submit" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this recipe?')">Delete</button>
-                        <a href="{% url 'view_blog' recipe.id %}" class="btn btn-primary">View Recipe</a> 
-                    </form>
-                </td> 
-            </tr>
-            {% empty %}
-            <tr>
-                <td colspan="9" class="text-center">No recipes available.</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
-</div>
+<style>
+    .recipe-section {
+        background-color: #f8f9fa;
+        padding: 2rem 0;
+        margin-bottom: 2rem;
+    }
+    .section-title {
+        text-align: center;
+        color: #ffc107;
+        font-size: 2rem;
+        margin-bottom: 1.5rem;
+        font-weight: bold;
+    }
+    .recipe-card {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        height: 100%;
+        margin-bottom: 20px;
+        margin-left: 20px;
+    }
+    .recipe-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 4px 8px rgba(0,0,0,0.15);
+    }
+    .recipe-image {
+        width: 100%;
+        height: 200px;
+        object-fit: cover;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+    }
+    .recipe-content {
+        padding: 1rem;
+    }
+    .recipe-title {
+        font-size: 1.25rem;
+        font-weight: bold;
+        margin-bottom: 0.5rem;
+        color: #343a40;
+    }
+    .recipe-meta {
+        font-size: 0.875rem;
+        color: #6c757d;
+    }
+</style>
 
+<section class="recipe-section">
+    <h2 class="section-title">Recipes</h2>
+    <div class="row row-cols-2 row-cols-md-2 row-cols-lg-3 g-4">
+        {% for recipe in recipes %}
+        <div class="col">
+            <div class="recipe-card">
+                <img src="{{ recipe.receipe_image.url }}" alt="{{ recipe.receipe_name }}" class="recipe-image">
+                <div class="recipe-content">
+                    <h3 class="recipe-title">{{ recipe.receipe_name }}</h3>
+                    <p class="recipe-meta">By {{ recipe.receipe_author }} on {{ recipe.date_created|date:"F d, Y" }}</p>
+                </div>
+                <a href="{% url 'view_blog' recipe.id %}" class="btn btn-warning" style="margin-left: 10px; margin-bottom: 10px;">View Recipe</a> 
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="recipe-section">
+    <h2 class="section-title">Quick Suppers</h2>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        {% for recipe in quick_suppers %}
+        <div class="col">
+            <div class="recipe-card">
+                <img src="{{ recipe.receipe_image.url }}" alt="{{ recipe.receipe_name }}" class="recipe-image">
+                <div class="recipe-content">
+                    <h3 class="recipe-title">{{ recipe.receipe_name }}</h3>
+                    <p class="recipe-meta">By {{ recipe.receipe_author }} on {{ recipe.created_at|date:"F d, Y" }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<section class="recipe-section">
+    <h2 class="section-title">Pasta</h2>
+    <div class="row row-cols-1 row-cols-md-2 row-cols-lg-3 g-4">
+        {% for recipe in pasta_recipes %}
+        <div class="col">
+            <div class="recipe-card">
+                <img src="{{ recipe.receipe_image.url }}" alt="{{ recipe.receipe_name }}" class="recipe-image">
+                <div class="recipe-content">
+                    <h3 class="recipe-title">{{ recipe.receipe_name }}</h3>
+                    <p class="recipe-meta">By {{ recipe.receipe_author }} on {{ recipe.created_at|date:"F d, Y" }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+</div>
 {% endblock %}

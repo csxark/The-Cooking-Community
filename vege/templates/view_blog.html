@@ -89,19 +89,43 @@ View Blog |
         <div class="col-lg-8 offset-lg-2">
             <article class="blog-post shadow-lg"> 
                 <header class="blog-post-header mb-4">
-                    <h1 class="blog-title display-4">{{ recipe.receipe_name }}</h1>
-                    <p class="text-muted">Posted on {{ recipe.created_at|date:"F d, Y" }}</p>
+                    <h1 class="blog-title display-4 text-center" style="color: #28a745;">{{ recipe.receipe_name }}</h1>
+                    <div class="row justify-content-center">
+                        <div class="col-md-6">
+                            <h3 class="h4 text-success mb-3">Cooking Time</h3>
+                            <p class="small mb-4">{{ recipe.cooking_time }} minutes</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h3 class="h4 text-success mb-3">Author</h3>
+                            <p class="small mb-4">{{ recipe.receipe_author }}</p>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="col-md-6"> 
+                            <h3 class="h4 text-success mb-3">Category</h3>
+                            <p class="small mb-4">{{ recipe.receipe_category }}</p>
+                        </div>
+                        <div class="col-md-6">
+                            <h3 class="h4 text-success mb-3">Difficulty</h3>
+                            <p class="small mb-4">{{ recipe.difficulty }}</p>
+                        </div>
+                    </div>
                 </header>
 
                 <figure class="blog-post-image mb-4">
-                    <img src="{{ recipe.receipe_image.url }}" alt="{{ recipe.receipe_name }}" class="img-fluid rounded">
+                    <img src="{{ recipe.receipe_image.url }}" alt="{{ recipe.receipe_name }}" class="img-fluid rounded" style="width: 100%; height: auto; object-fit: cover;">
                 </figure>
 
-                <section class="blog-post-content">
-                    <h2 class="h4 text-success mb-3">Description</h2>
+                <section class="blog-post-content"> 
+                    <h2 class="h4 text-success mb-3 mt-4">Description</h2>
                     <p class="lead mb-4">{{ recipe.receipe_description }}</p>
-
-                    <h2 class="h4 text-success mb-3">Instructions</h2>
+                    <h2 class="h4 text-success mb-3 mt-4">Ingredients</h2>
+                    <div class="card"> 
+                        <div class="card-body">
+                            {{ recipe.receipe_ingredients|linebreaks }}
+                        </div>
+                    </div>
+                    <h2 class="h4 text-success mb-3 mt-4">Instructions</h2>
                     <div class="card">
                         <div class="card-body">
                             {{ recipe.receipe_instructions|linebreaks }}
@@ -110,7 +134,7 @@ View Blog |
                 </section>
 
                 <footer class="blog-post-footer mt-4">
-                    <div class="d-flex justify-content-between align-items-center">
+                    <div class="d-flex justify-content-between">
                         <a href="{% url 'view_receipes' %}" class="btn btn-outline-secondary">&larr; Back to Recipes</a>
                         <button class="btn btn-success" onclick="window.print()">Print Recipe</button> 
                     </div>

@@ -21,10 +21,42 @@ Edit Receipe |
             </textarea>
         </div>
         <div class="mb-3">
+            <label for="ingredients" class="form-label">Ingredients</label>
+            <textarea class="form-control" id="ingredients" name="receipe_ingredients" rows="3" required>
+                {{ recipe.receipe_ingredients }}
+            </textarea>
+        </div>
+        <div class="mb-3">
+            <label for="category" class="form-label">Category</label>
+            <select class="form-select" id="category" name="category" required>
+                <option value="Breakfast">Breakfast</option>
+                <option value="Lunch">Lunch</option>
+                <option value="Dinner">Dinner</option>
+                <option value="Snack">Snack</option>
+                <option value="Dessert">Dessert</option>
+            </select> 
+        </div>
+        <div class="mb-3">
             <label for="instructions" class="form-label">Instructions</label>
             <textarea class="form-control" id="instructions" name="receipe_instructions" rows="5" required>
                 {{ recipe.receipe_instructions }}
             </textarea>
+        </div>
+        <div class="mb-3">
+            <label for="cooking_time" class="form-label">Cooking Time</label>
+            <input type="number" class="form-control" id="cooking_time" name="cooking_time" value="{{ recipe.cooking_time }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="author" class="form-label">Author</label>
+            <input type="text" class="form-control" id="author" name="receipe_author" value="{{ recipe.receipe_author }}" required>
+        </div>
+        <div class="mb-3">
+            <label for="difficulty" class="form-label">Difficulty</label>
+            <select class="form-select" id="difficulty" name="difficulty" required>
+                <option value="Easy">Easy</option>
+                <option value="Medium">Medium</option>
+                <option value="Hard">Hard</option>
+            </select> 
         </div>
         <div class="mb-3">
             <label for="image" class="form-label">Image</label>

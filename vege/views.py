@@ -7,19 +7,34 @@ def recipes(request):
     if request.method == 'POST':
         receipe_name = request.POST.get('receipe_name')
         receipe_description = request.POST.get('receipe_description')
-        receipe_instructions = request.POST.get('receipe_instructions')
+        receipe_ingredients = request.POST.get('receipe_ingredients')
+        receipe_category = request.POST.get('receipe_category') 
+        receipe_instructions = request.POST.get('receipe_instructions') 
+        cooking_time = request.POST.get('cooking_time')
+        receipe_author = request.POST.get('receipe_author')
+        difficulty = request.POST.get('difficulty') 
         receipe_image = request.FILES.get('receipe_image')
 
         print(receipe_name)
-        print(receipe_description)
+        print(receipe_description) 
+        print(receipe_ingredients)
+        print(receipe_category)
         print(receipe_instructions)
+        print(cooking_time)
+        print(receipe_author)
+        print(difficulty)
         print(receipe_image)
         
 
         receipe = Receipe.objects.create(
             receipe_name=receipe_name,
             receipe_description=receipe_description,
+            receipe_ingredients=receipe_ingredients,
+            receipe_category=receipe_category,
             receipe_instructions=receipe_instructions,
+            cooking_time=cooking_time,
+            receipe_author=receipe_author,
+            difficulty=difficulty,
             receipe_image=receipe_image,
         )
         receipe.save() 
@@ -32,7 +47,12 @@ def edit_receipe(request, recipe_id):
     if request.method == 'POST': 
         receipe.receipe_name = request.POST.get('receipe_name')
         receipe.receipe_description = request.POST.get('receipe_description')
-        receipe.receipe_instructions = request.POST.get('receipe_instructions') 
+        receipe.receipe_ingredients = request.POST.get('receipe_ingredients')
+        receipe.receipe_category = request.POST.get('receipe_category')
+        receipe.receipe_instructions = request.POST.get('receipe_instructions')
+        receipe.cooking_time = request.POST.get('cooking_time')
+        receipe.receipe_author = request.POST.get('receipe_author')
+        receipe.difficulty = request.POST.get('difficulty')
         receipe.receipe_image = request.FILES.get('receipe_image')
         receipe.save()
         return redirect('view_receipes')
@@ -48,9 +68,9 @@ def view_blog(request, recipe_id):
     return render(request, 'view_blog.html', {'recipe': recipe})
 
 def search(request):
-    query = request.GET.get('query')
+    query = request.GET.get('query') 
     recipes = Receipe.objects.filter(receipe_name__icontains=query)
-    return render(request, 'search.html', {'recipes': recipes})
+    return render(request, 'search.html', {'recipes': recipes}) 
 
 def home(request):
     return render(request,'index.html')

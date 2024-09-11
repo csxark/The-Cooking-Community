@@ -53,18 +53,18 @@
                         <a class="nav-link" href="{% url 'home' %}">Home</a>
                     </li>
                     <li class="nav-item" style="margin-left: 10px; margin-right: 10px;">
-                        <a class="nav-link" href="{% url 'recipes' %}">Add Recipes</a>
+                        <a class="nav-link" href="{% url 'recipes' %}">Add Receipe</a>
                     </li>
                     <li class="nav-item" style="margin-left: 10px; margin-right: 10px;">
-                        <a class="nav-link" href="{% url 'view_receipes' %}">View Recipes</a>
-                    </li> 
+                        <a class="nav-link" href="{% url 'view_receipes' %}">Receipes</a> 
+                    </li>  
                     <li class="nav-item" style="margin-left: 10px; margin-right: 10px;">
                         <a class="nav-link" href="{% url 'about' %}">About</a>
                     </li>
-                    `<li class="nav-item" style="margin-left: 10px; margin-right: 10px;">
+                    <li class="nav-item" style="margin-left: 10px; margin-right: 10px;">
                         <a class="nav-link" href="{% url 'contact' %}">Contact</a>
                     </li>
-                </ul>
+                </ul> 
             </div>
         </div>
     </nav>
@@ -84,8 +84,7 @@
                     <ul class="list-unstyled">
                         <li><a href="{% url 'home' %}" class="text-white" style="text-decoration: none; transition: color 0.3s;">Home</a></li>
                         <li><a href="{% url 'view_receipes' %}" class="text-white" style="text-decoration: none; transition: color 0.3s;">All Receipes</a></li> 
-                        <li><a href="{% url 'about' %}" class="text-white" style="text-decoration: none; transition: color 0.3s;">About</a></li>
-                        <li><a href="{% url 'search' %}" class="text-white" style="text-decoration: none; transition: color 0.3s;">Search</a></li> 
+                        <li><a href="{% url 'about' %}" class="text-white" style="text-decoration: none; transition: color 0.3s;">About</a></li> 
                         <li><a href="{% url 'contact' %}" class="text-white" style="text-decoration: none; transition: color 0.3s;">Contact</a></li> 
                     </ul>
                 </div>
@@ -97,6 +96,13 @@
                         <li class="list-inline-item"><a href="#" class="text-white" style="font-size: 1.5rem; margin-right: 10px; transition: color 0.3s;"><i class="fab fa-instagram"></i></a></li>
                         <li class="list-inline-item"><a href="#" class="text-white" style="font-size: 1.5rem; transition: color 0.3s;"><i class="fab fa-pinterest"></i></a></li>
                     </ul>
+                </div>
+                <div class="col-md-4">
+                    <h5 style="color: #ffc107; font-weight: bold;">Search</h5>
+                    <form class="d-flex" method="get" action="{% url 'search' %}">
+                        <input class="form-control me-2" type="search" placeholder="Search Receipes" aria-label="Search" name="query">
+                        <button class="btn btn-warning" type="submit">Search</button>
+                    </form>
                 </div>
             </div>
             <hr class="my-4" style="border-color: #ffc107; opacity: 0.5;">

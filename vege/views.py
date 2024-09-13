@@ -1,10 +1,15 @@
 from django.shortcuts import render, redirect, get_object_or_404
 from django.views.decorators.http import require_POST
 from .models import Receipe  
-
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.models import User
+from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 # Create your views here.
+@login_required (login_url='login') 
 def recipes(request):
     if request.method == 'POST':
+
         receipe_name = request.POST.get('receipe_name')
         receipe_description = request.POST.get('receipe_description')
         receipe_ingredients = request.POST.get('receipe_ingredients')
@@ -41,7 +46,7 @@ def recipes(request):
         return redirect('recipes')
     return render(request,'recipes.html')
    
-
+@login_required (login_url='login') 
 def edit_receipe(request, recipe_id):
     receipe = get_object_or_404(Receipe, id=recipe_id)
     if request.method == 'POST': 
@@ -58,6 +63,7 @@ def edit_receipe(request, recipe_id):
         return redirect('view_receipes')
     return render(request, 'edit_receipe.html', {'recipe': receipe}) 
 
+@login_required (login_url='login') 
 def delete_recipe(request, recipe_id):
     recipe = get_object_or_404(Receipe, id=recipe_id)
     recipe.delete()
@@ -85,4 +91,44 @@ def view_receipes(request):
     recipes = Receipe.objects.all()
     return render(request, 'view_receipes.html', {'recipes': recipes})
 
+def user_login(request):
+    if request.method == 'POST':
+        username = request.POST.get('username')
+        password = request.POST.get('password') 
+        user = authenticate(username=username, password=password)
+        if user is not None:
+            login(request, user)
+            return redirect('recipes')  
+        else:
+            messages.error(request, 'Invalid username or password')
+            return render(request, 'login.html')
+    return render(request, 'login.html')
+
+def user_logout(request):
+    logout(request)
+    messages.success(request,'Logged out successfully')
+    return redirect('login') 
+
+def register(request):
+    if request.method == 'POST':
+        first_name = request.POST.get('first_name')
+        last_name = request.POST.get('last_name') 
+        username = request.POST.get('username')
+        email = request.POST.get('email')
+        password = request.POST.get('password')
+        confirm_password = request.POST.get('confirm_password')
+        user=User.objects.filter(username=username)
+        if user.exists():
+            messages.info(request,'Username already exists')
+            return render(request,'register.html')
+        user = User.objects.create_user(first_name=first_name, last_name=last_name, username=username, email=email) 
+        user.set_password(password) 
+        if password == confirm_password:
+            user.save()
+            messages.info(request,'User created successfully') 
+            return redirect('login')
+        else:
+            messages.info(request,'Passwords do not match')
+            return render(request,'register.html')
+    return render(request,'register.html')
 

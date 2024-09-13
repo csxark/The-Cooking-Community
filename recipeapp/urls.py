@@ -33,6 +33,9 @@ urlpatterns = [
     path('delete_recipe/<int:recipe_id>/', views.delete_recipe, name='delete_recipe'),
     path('view_blog/<int:recipe_id>/', views.view_blog, name='view_blog'),
     path('search/', views.search, name='search'),
+    path('login/', views.user_login, name='login'),
+    path('register/', views.register, name='register'),
+    path('logout/', views.user_logout, name='logout'),
 ]
 
 if settings.DEBUG:

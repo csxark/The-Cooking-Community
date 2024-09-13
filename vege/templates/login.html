@@ -1,0 +1,144 @@
+{% extends 'base.html' %} {% block title %}Login | The Cooking Community{%
+endblock %} {% block content %}
+<style>
+  .messages {
+    margin: 10px -10px;
+  }
+  .login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: calc(100vh - 120px);
+    padding: 2rem 1rem;
+    background-color: #161616;
+  }
+
+  .login-form {
+    width: 100%;
+    max-width: 450px; /* Reduced from 400px */
+    padding: 2rem;
+    background-color: #161616;
+    box-shadow: 0 0 20px 5px rgba(255, 215, 0, 0.3); /* Changed from #00FF7F */
+    border-radius: 10px;
+    height: 600px; /* Reduced from 800px */
+  }
+
+  .welcome-lines {
+    text-align: center;
+    margin-bottom: 2rem;
+  }
+
+  .welcome-line-1 {
+    color: #ffff00; /* Changed from #00FF7F */
+    font-weight: 600;
+    font-size: 2rem;
+  }
+
+  .welcome-line-2 {
+    color: #ffffff;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+  }
+
+  .form-group {
+    margin-bottom: 1rem;
+  }
+
+  .form-group input {
+    width: 100%;
+    padding: 0.75rem;
+    background: transparent;
+    border: 1px solid #e3e3e3;
+    border-radius: 8px;
+    color: #ffff00; /* Changed from #00FF7F */
+    font-size: 1rem;
+  }
+
+  .form-group input:focus {
+    outline: none;
+    border-color: #ffff00; /* Changed from #00FF7F */
+  }
+
+  .submit-button {
+    width: 100%;
+    padding: 0.75rem;
+    background-color: transparent;
+    color: #ffff00; /* Changed from #00FF7F */
+    border: 1px solid #ffff00; /* Changed from #00FF7F */
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+
+  .submit-button:hover {
+    background-color: #ffff00; /* Changed from #00FF7F */
+    color: #161616;
+  }
+
+  .forgot-pass {
+    text-align: center;
+    margin-top: 1rem;
+  }
+
+  .forgot-pass a {
+    color: #868686;
+    font-size: 0.875rem;
+    text-decoration: none;
+  }
+
+  @media (max-width: 480px) {
+    .login-form {
+      padding: 1.5rem;
+    }
+
+    .welcome-line-1 {
+      font-size: 1.5rem;
+    }
+
+    .welcome-line-2 {
+      font-size: 0.875rem;
+    }
+  }
+</style>
+
+<div class="login-container">
+  <form action="" method="post" class="login-form">
+    {% csrf_token %}
+    <div class="welcome-lines">
+      <div class="welcome-line-1">The Cooking Community</div>
+      {% if messages %}
+      <ul class="messages">
+        {% for message in messages %}
+        <div class="alert alert-warning" role="alert">{{ message }}</div>
+        {% endfor %}
+      </ul>
+      {% endif %}
+      <div class="welcome-line-2">Welcome Back</div>
+    </div>
+    <div class="form-group">
+      <label for="username" class="form-label" style="color: #ffff00"
+        >Username:</label
+      >
+      <input type="text" id="username" name="username" required />
+      {% for error in form.username.errors %}
+      <p class="text-danger">{{error}}</p>
+      {% endfor %}
+
+      <label for="password" class="form-label" style="color: #ffff00"
+        >Password:</label
+      >
+      <input type="password" id="password" name="password" required />
+      {% for error in form.password.errors %}
+      <p class="text-danger">{{error}}</p>
+      {% endfor %}
+    </div>
+    <button class="submit-button" type="submit">Login</button>
+    <div class="forgot-pass">
+      <a href="{% url 'register' %}">New User?</a>
+    </div>
+  </form>
+</div>
+
+{% endblock %}
